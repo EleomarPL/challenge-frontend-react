@@ -1,1 +1,1 @@
-export const NAME_WEB = 'RickAndMorty'
+export const NAME_WEB = 'Rick-Morty'
