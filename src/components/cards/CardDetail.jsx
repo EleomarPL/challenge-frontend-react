@@ -12,15 +12,15 @@ import ListItemText from '@mui/material/ListItemText'
 import Avatar from '@mui/material/Avatar'
 
 import PropTypes from 'prop-types'
+import styled from 'styled-components'
 
 const CardDetail = ({ row, list }) => {
   return (
     <Card sx={ { width: '100%' } }>
       <CardActionArea>
         { row?.image &&
-          <CardMedia
+          <CustomCardMedia
             component="img"
-            height="140"
             image={ row.image }
             alt={ row.name }
           />
@@ -71,5 +71,11 @@ Item.propTypes = {
   property: PropTypes.string.isRequired,
   value: PropTypes.string.isRequired
 }
+
+const CustomCardMedia = styled(CardMedia)`
+  height: 300px !important;
+  object-fit: cover !important; 
+  border-radius: 5px !important;
+`
 
 export default CardDetail
