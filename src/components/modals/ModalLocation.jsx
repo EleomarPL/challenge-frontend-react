@@ -4,10 +4,13 @@ import DialogActions from '@mui/material/DialogActions'
 import DialogContent from '@mui/material/DialogContent'
 import DialogTitle from '@mui/material/DialogTitle'
 
-import CardDetail from '@/components/cards/CardDetail'
+import CardDetail from '../cards/CardDetail'
 import PropTypes from 'prop-types'
+import { useSelector } from 'react-redux'
 
-const ModalLocation = ({ open, setOpen, row }) => {
+const ModalLocation = ({ open, setOpen }) => {
+  const location = useSelector(state => state.locations.location)
+
   const handleClose = () => {
     setOpen(false)
   }
@@ -24,11 +27,11 @@ const ModalLocation = ({ open, setOpen, row }) => {
       >
         <DialogTitle id="scroll-dialog-title">Location</DialogTitle>
         <DialogContent dividers={ true }>
-          <CardDetail row={ row }
+          <CardDetail row={ location || {} }
             list={
               [
-                { property: 'Status', value: row.status },
-                { property: 'Specie', value: row.species }
+                { property: 'Type', value: location?.type },
+                { property: 'Dimension', value: location?.dimension }
               ]
             }
           />
@@ -42,8 +45,7 @@ const ModalLocation = ({ open, setOpen, row }) => {
 }
 ModalLocation.propTypes = {
   open: PropTypes.bool.isRequired,
-  setOpen: PropTypes.func.isRequired,
-  row: PropTypes.object.isRequired
+  setOpen: PropTypes.func.isRequired
 }
 
 export default ModalLocation
