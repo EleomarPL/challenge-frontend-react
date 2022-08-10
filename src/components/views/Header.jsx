@@ -6,7 +6,6 @@ import Typography from '@mui/material/Typography'
 import Menu from '@mui/material/Menu'
 import MenuIcon from '@mui/icons-material/Menu'
 import Container from '@mui/material/Container'
-import Button from '@mui/material/Button'
 import MenuItem from '@mui/material/MenuItem'
 import Avatar from '@mui/material/Avatar'
 
@@ -117,15 +116,18 @@ const ResponsiveAppBar = () => {
           </Typography>
           <Box sx={ { flexGrow: 1, display: { xs: 'none', md: 'flex' } } }>
             { pages.map((page, index) => (
-              <Button
+              <Typography
                 key={ page }
-                onClick={ handleCloseNavMenu }
-                sx={ { my: 2, display: 'block' } }
+                variant="button"
+                component={ CustomNavLink }
+                to={ links[index] }
+                sx={ {
+                  display: 'block',
+                  my: 2
+                } }
               >
-                <CustomNavLink to={ links[index] }>
-                  { page }
-                </CustomNavLink>
-              </Button>
+                { page }
+              </Typography>
             )) }
           </Box>
         </Toolbar>
@@ -141,7 +143,7 @@ const CustomContainer = styled(Container)`
 const CustomNavLink = styled(NavLink)`
   color: var(--text-primary);
   text-decoration: none;
-  padding: 5px 10px;
+  padding: 5px 10px 0 10px;
   &.active {
     border-bottom: 2px solid var(--border-primary);
   }
