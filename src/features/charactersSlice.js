@@ -10,6 +10,9 @@ export const charactersSlice = createSlice({
     status: 'idle'
   },
   reducers: {
+    selectCharacter: (state, action) => {
+      state.character = action.payload
+    },
     requestPending: (state) => {
       state.status = 'loading'
     },
@@ -40,7 +43,7 @@ export const charactersSlice = createSlice({
 
 export const {
   requestPending, setCharacters, setError,
-  setNewPage, resetState
+  setNewPage, resetState, selectCharacter
 } = charactersSlice.actions
 
 export default charactersSlice.reducer
