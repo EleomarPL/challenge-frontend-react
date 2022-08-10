@@ -1,9 +1,12 @@
 import { Routes, Route } from 'react-router-dom'
-import { GlobalLayout } from '@/components/layouts/GlobalLayout'
+import { Suspense, lazy } from 'react'
 
-import Characters from '@/pages/Characters'
-import Episodes from '@/pages/Episodes'
-import Locations from '@/pages/Locations'
+import { GlobalLayout } from './components/layouts/GlobalLayout'
+import SpinnerLoadingPage from './components/common/SpinnerLoadingPage'
+
+const Characters = lazy(() => import('./pages/Characters'))
+const Episodes = lazy(() => import('./pages/Episodes'))
+const Locations = lazy(() => import('./pages/Locations'))
 
 const App = () => {
   return (
@@ -12,17 +15,29 @@ const App = () => {
         <Route element={ <GlobalLayout /> }>
           <Route index
             element={
-              <Characters />
+              <>
+                <Suspense fallback={ <SpinnerLoadingPage /> }>
+                  <Characters />
+                </Suspense>
+              </>
             }
           />
           <Route path="/episodes"
             element={
-              <Episodes />
+              <>
+                <Suspense fallback={ <SpinnerLoadingPage /> }>
+                  <Episodes />
+                </Suspense>
+              </>
             }
           />
           <Route path="/locations"
             element={
-              <Locations />
+              <>
+                <Suspense fallback={ <SpinnerLoadingPage /> }>
+                  <Locations />
+                </Suspense>
+              </>
             }
           />
         </Route>
