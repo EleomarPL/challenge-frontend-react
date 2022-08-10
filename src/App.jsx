@@ -1,6 +1,10 @@
 import { Routes, Route } from 'react-router-dom'
 import { GlobalLayout } from '@/components/layouts/GlobalLayout'
 
+import Characters from './pages/Characters'
+import Episodes from './pages/Episodes'
+import Locations from './pages/Locations'
+
 const App = () => {
   return (
     <>
@@ -8,17 +12,17 @@ const App = () => {
         <Route element={ <GlobalLayout /> }>
           <Route index
             element={
-              <h2>Characters</h2>
+              <Characters />
             }
           />
           <Route path="/episodes"
             element={
-              <h2>Episodes</h2>
+              <Episodes />
             }
           />
           <Route path="/locations"
             element={
-              <h2>Locations</h2>
+              <Locations />
             }
           />
         </Route>
