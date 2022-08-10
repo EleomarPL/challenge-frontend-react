@@ -1,6 +1,6 @@
 export const columnsLocations = [
   {
-    id: 'code',
+    id: 'id',
     label: 'Code',
     minWidth: 100,
     align: 'center'
