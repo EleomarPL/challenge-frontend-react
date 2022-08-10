@@ -8,7 +8,7 @@ import MenuIcon from '@mui/icons-material/Menu'
 import Container from '@mui/material/Container'
 import Button from '@mui/material/Button'
 import MenuItem from '@mui/material/MenuItem'
-import AdbIcon from '@mui/icons-material/Adb'
+import Avatar from '@mui/material/Avatar'
 
 import { useState } from 'react'
 import { Link, NavLink } from 'react-router-dom'
@@ -33,7 +33,9 @@ const ResponsiveAppBar = () => {
     <AppBar position="static">
       <CustomContainer maxWidth="xl">
         <Toolbar disableGutters>
-          <AdbIcon sx={ { display: { xs: 'none', md: 'flex' }, mr: 1 } } />
+          <Avatar alt="Logo" src="/apple-icon-180x180.png"
+            sx={ { display: { xs: 'none', md: 'flex' }, mr: 1 } }
+          />
           <Typography
             variant="h6"
             noWrap
@@ -92,7 +94,9 @@ const ResponsiveAppBar = () => {
               )) }
             </Menu>
           </Box>
-          <AdbIcon sx={ { display: { xs: 'flex', md: 'none' }, mr: 1 } } />
+          <Avatar alt="Logo" src="/apple-icon-180x180.png"
+            sx={ { display: { xs: 'flex', md: 'none' }, mr: 1 } }
+          />
           <Typography
             variant="h5"
             noWrap
