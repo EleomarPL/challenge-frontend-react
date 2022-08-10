@@ -1,9 +1,9 @@
 import { Routes, Route } from 'react-router-dom'
 import { GlobalLayout } from '@/components/layouts/GlobalLayout'
 
-import Characters from './pages/Characters'
-import Episodes from './pages/Episodes'
-import Locations from './pages/Locations'
+import Characters from '@/pages/Characters'
+import Episodes from '@/pages/Episodes'
+import Locations from '@/pages/Locations'
 
 const App = () => {
   return (
