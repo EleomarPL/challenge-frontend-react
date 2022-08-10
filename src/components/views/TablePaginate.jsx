@@ -9,7 +9,7 @@ import Button from '@mui/material/Button'
 
 import PropTypes from 'prop-types'
 
-const TablePaginate = ({ columns, rows, setOpen }) => {
+const TablePaginate = ({ columns, rows, setOpen, page, rowsPerPage }) => {
   const handleOpenModal = (row) => {
     console.log(row)
   }
@@ -35,11 +35,12 @@ const TablePaginate = ({ columns, rows, setOpen }) => {
           </TableHead>
           <TableBody>
             { rows &&
-              rows.map((row) => ((
-                <TableRow hover role="checkbox"
-                  tabIndex={ -1 } key={ row.code }
+              rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                .map((row) => ((
+                  <TableRow hover role="checkbox"
+                  tabIndex={ -1 } key={ row.id }
                 >
-                  { columns &&
+                    { columns &&
                     columns.map((column) => {
                       const value = row[column.id]
                       if (value) {
@@ -53,17 +54,17 @@ const TablePaginate = ({ columns, rows, setOpen }) => {
                       } else return null
                     })
                   }
-                  <TableCell align="center"
+                    <TableCell align="center"
                     style={ { minWidth: 40 } }
                   >
-                    <Button variant="contained" color="primary"
+                      <Button variant="contained" color="primary"
                       onClick={ () => handleOpenModal(row) }
                     >
-                      Details
-                    </Button>
-                  </TableCell>
-                </TableRow>
-              )))
+                        Details
+                      </Button>
+                    </TableCell>
+                  </TableRow>
+                )))
             }
           </TableBody>
         </Table>
@@ -75,7 +76,9 @@ const TablePaginate = ({ columns, rows, setOpen }) => {
 TablePaginate.propTypes = {
   columns: PropTypes.arrayOf(PropTypes.object),
   rows: PropTypes.arrayOf(PropTypes.object),
-  setOpen: PropTypes.func
+  setOpen: PropTypes.func,
+  page: PropTypes.number,
+  rowsPerPage: PropTypes.number
 }
 
 export default TablePaginate
