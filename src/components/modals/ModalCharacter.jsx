@@ -30,7 +30,10 @@ const ModalCharacter = ({ open, setOpen }) => {
             list={
               [
                 { property: 'Status', value: character.status },
-                { property: 'Specie', value: character.species }
+                { property: 'Specie', value: character.species },
+                { property: 'Gender', value: character.gender },
+                { property: 'Origin', value: character.origin.name },
+                { property: 'Location', value: character.location.name }
               ]
             }
           />
