@@ -6,8 +6,11 @@ import DialogTitle from '@mui/material/DialogTitle'
 
 import CardDetail from '@/components/cards/CardDetail'
 import PropTypes from 'prop-types'
+import { useSelector } from 'react-redux'
 
-const ModalEpisode = ({ open, setOpen, row }) => {
+const ModalEpisode = ({ open, setOpen }) => {
+  const episode = useSelector(state => state.episodes.episode)
+
   const handleClose = () => {
     setOpen(false)
   }
@@ -24,11 +27,11 @@ const ModalEpisode = ({ open, setOpen, row }) => {
       >
         <DialogTitle id="scroll-dialog-title">Episode</DialogTitle>
         <DialogContent dividers={ true }>
-          <CardDetail row={ row }
+          <CardDetail row={ episode || {} }
             list={
               [
-                { property: 'Status', value: row.status },
-                { property: 'Specie', value: row.species }
+                { property: 'Episode', value: episode?.episode },
+                { property: 'Air Date', value: episode?.air_date }
               ]
             }
           />
@@ -42,8 +45,7 @@ const ModalEpisode = ({ open, setOpen, row }) => {
 }
 ModalEpisode.propTypes = {
   open: PropTypes.bool.isRequired,
-  setOpen: PropTypes.func.isRequired,
-  row: PropTypes.object.isRequired
+  setOpen: PropTypes.func.isRequired
 }
 
 export default ModalEpisode
