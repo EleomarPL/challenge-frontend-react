@@ -4,7 +4,7 @@ import DialogActions from '@mui/material/DialogActions'
 import DialogContent from '@mui/material/DialogContent'
 import DialogTitle from '@mui/material/DialogTitle'
 
-import CardDetail from '@/components/cards/CardDetail'
+import CardDetail from '../cards/CardDetail'
 import PropTypes from 'prop-types'
 import { useSelector } from 'react-redux'
 
@@ -26,14 +26,14 @@ const ModalCharacter = ({ open, setOpen }) => {
       >
         <DialogTitle id="scroll-dialog-title">Character</DialogTitle>
         <DialogContent dividers={ true }>
-          <CardDetail row={ character }
+          <CardDetail row={ character || {} }
             list={
               [
-                { property: 'Status', value: character.status },
-                { property: 'Specie', value: character.species },
-                { property: 'Gender', value: character.gender },
-                { property: 'Origin', value: character.origin.name },
-                { property: 'Location', value: character.location.name }
+                { property: 'Status', value: character?.status },
+                { property: 'Specie', value: character?.species },
+                { property: 'Gender', value: character?.gender },
+                { property: 'Origin', value: character?.origin?.name },
+                { property: 'Location', value: character?.location?.name }
               ]
             }
           />
