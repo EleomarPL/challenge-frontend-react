@@ -1,14 +1,20 @@
 import PropTypes from 'prop-types'
 import TablePagination from '@mui/material/TablePagination'
 
-const Pagination = ({ page, setPage, rowsPerPage, setRowsPerPage, type, totalItems = 0 }) => {
+const Pagination = ({
+  page, setPage, rowsPerPage, setRowsPerPage, type, totalItems = 0,
+  calculateFunction
+}) => {
   const handleChangePage = (event, newPage) => {
     setPage(newPage)
+    calculateFunction(newPage)
   }
 
   const handleChangeRowsPerPage = (event) => {
-    setRowsPerPage(parseInt(event.target.value, 10))
+    const newRowsPerPage = parseInt(event.target.value, 10)
+    setRowsPerPage(newRowsPerPage)
     setPage(0)
+    calculateFunction(0, newRowsPerPage)
   }
 
   return (
@@ -31,7 +37,8 @@ Pagination.propTypes = {
   page: PropTypes.number.isRequired,
   setPage: PropTypes.func.isRequired,
   rowsPerPage: PropTypes.number.isRequired,
-  setRowsPerPage: PropTypes.func.isRequired
+  setRowsPerPage: PropTypes.func.isRequired,
+  calculateFunction: PropTypes.func.isRequired
 }
 
 export default Pagination
