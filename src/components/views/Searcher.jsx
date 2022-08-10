@@ -5,13 +5,14 @@ import SearchIcon from '@mui/icons-material/Search'
 import PropTypes from 'prop-types'
 import { debounce } from 'lodash'
 import { useEffect, useMemo } from 'react'
+import { TIME_DEBOUNCER } from '../../config/TIME_DEBOUNCER'
 
 const Searcher = ({ type = 'Character', setState = () => {} }) => {
   const handleChange = (event) => {
     setState(event.target.value)
   }
   const debounceHandleChange = useMemo(
-    () => debounce(handleChange, 1000)
+    () => debounce(handleChange, TIME_DEBOUNCER)
     , []
   )
   useEffect(() => {
