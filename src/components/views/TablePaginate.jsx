@@ -9,10 +9,8 @@ import Button from '@mui/material/Button'
 
 import PropTypes from 'prop-types'
 
-const TablePaginate = ({ columns, rows, setOpen, page, rowsPerPage }) => {
-  const handleOpenModal = (row) => {
-    console.log(row)
-  }
+const TablePaginate = ({ columns, rows, page, rowsPerPage, callback }) => {
+  const handleOpenModal = (row) => callback(row)
 
   return (
     <Paper sx={ { width: '100%', overflow: 'hidden' } }>
@@ -76,9 +74,9 @@ const TablePaginate = ({ columns, rows, setOpen, page, rowsPerPage }) => {
 TablePaginate.propTypes = {
   columns: PropTypes.arrayOf(PropTypes.object),
   rows: PropTypes.arrayOf(PropTypes.object),
-  setOpen: PropTypes.func,
   page: PropTypes.number,
-  rowsPerPage: PropTypes.number
+  rowsPerPage: PropTypes.number,
+  callback: PropTypes.func
 }
 
 export default TablePaginate

@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, Suspense, lazy } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
 import SkeletonLoadingTable from '../components/common/SkeletonLoadingTable'
@@ -8,12 +8,15 @@ import TablePaginate from '../components/views/TablePaginate'
 import useGetCharacter from '../hooks/useGetCharacter'
 import useControlRequest from '../hooks/useControlRequest'
 
-import { resetState } from '../features/charactersSlice'
+import { resetState, selectCharacter } from '../features/charactersSlice'
 import { columnsCharacters } from '../const/columnsTableCharacter'
+
+const ModalCharacter = lazy(() => import('../components/modals/ModalCharacter'))
 
 const Characters = () => {
   const [searcher, setSearcher] = useState('')
   const [page, setPage] = useState(0)
+  const [open, setOpen] = useState(false)
   const [rowsPerPage, setRowsPerPage] = useState(5)
 
   const characters = useSelector(state => state.characters.characters)
@@ -34,12 +37,17 @@ const Characters = () => {
     if (rpp) willNewRequestCharacter(newPage, rpp, searcher)
     else willNewRequestCharacter(newPage, rowsPerPage, searcher)
   }
+  const handleSelectCharacter = (character) => {
+    setOpen(true)
+    dispatch(selectCharacter(character))
+  }
 
   return (
     <div>
       <Searcher type="Character" setState={ setSearcher } />
       <TablePaginate columns={ columnsCharacters } rows={ characters }
         page={ page } rowsPerPage={ rowsPerPage }
+        callback={ handleSelectCharacter }
       />
       { status === 'error' && <div>Error</div> }
       { status === 'loading' && <SkeletonLoadingTable /> }
@@ -48,6 +56,9 @@ const Characters = () => {
         type="Character" totalItems={ totalItems || 0 }
         calculateFunction={ handleCaculculateRequest }
       />
+      <Suspense fallback={ <span>Loading Modal</span> }>
+        <ModalCharacter open={ open } setOpen={ setOpen } />
+      </Suspense>
     </div>
   )
 }

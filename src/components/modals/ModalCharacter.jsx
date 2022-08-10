@@ -6,8 +6,11 @@ import DialogTitle from '@mui/material/DialogTitle'
 
 import CardDetail from '@/components/cards/CardDetail'
 import PropTypes from 'prop-types'
+import { useSelector } from 'react-redux'
 
-const ModalCharacter = ({ open, setOpen, row }) => {
+const ModalCharacter = ({ open, setOpen }) => {
+  const character = useSelector(state => state.characters.character)
+
   const handleClose = () => {
     setOpen(false)
   }
@@ -18,17 +21,16 @@ const ModalCharacter = ({ open, setOpen, row }) => {
         open={ open }
         onClose={ handleClose }
         scroll="paper"
-        fullWidth={ true }
         aria-labelledby="scroll-dialog-title"
         aria-describedby="scroll-dialog-description"
       >
         <DialogTitle id="scroll-dialog-title">Character</DialogTitle>
         <DialogContent dividers={ true }>
-          <CardDetail row={ row }
+          <CardDetail row={ character }
             list={
               [
-                { property: 'Status', value: row.status },
-                { property: 'Specie', value: row.species }
+                { property: 'Status', value: character.status },
+                { property: 'Specie', value: character.species }
               ]
             }
           />
@@ -42,8 +44,7 @@ const ModalCharacter = ({ open, setOpen, row }) => {
 }
 ModalCharacter.propTypes = {
   open: PropTypes.bool.isRequired,
-  setOpen: PropTypes.func.isRequired,
-  row: PropTypes.object.isRequired
+  setOpen: PropTypes.func.isRequired
 }
 
 export default ModalCharacter
