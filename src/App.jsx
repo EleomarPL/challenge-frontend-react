@@ -8,6 +8,7 @@ import SpinnerLoadingPage from './components/common/SpinnerLoadingPage'
 const Characters = lazy(() => import('./pages/Characters'))
 const Episodes = lazy(() => import('./pages/Episodes'))
 const Locations = lazy(() => import('./pages/Locations'))
+const NotFound = lazy(() => import('./pages/NotFound'))
 
 const App = () => {
   return (
@@ -61,6 +62,21 @@ const App = () => {
                 </Helmet>
                 <Suspense fallback={ <SpinnerLoadingPage /> }>
                   <Locations />
+                </Suspense>
+              </>
+            }
+          />
+          <Route path="*"
+            element={
+              <>
+                <Helmet>
+                  <title>Not Found | RickAndMorty</title>
+                  <meta name="description"
+                    content="This page is not found"
+                  />
+                </Helmet>
+                <Suspense fallback={ <SpinnerLoadingPage /> }>
+                  <NotFound />
                 </Suspense>
               </>
             }
