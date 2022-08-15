@@ -4,7 +4,7 @@ import DialogActions from '@mui/material/DialogActions'
 import DialogContent from '@mui/material/DialogContent'
 import DialogTitle from '@mui/material/DialogTitle'
 
-import CardDetail from '@/components/cards/CardDetail'
+import CardDetail from '../cards/CardDetail'
 import PropTypes from 'prop-types'
 import { useSelector } from 'react-redux'
 
